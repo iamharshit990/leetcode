@@ -1,18 +1,25 @@
 class Solution {
     public int reverse(int x) {
-        long rev = 0;           // Use long instead of int
-        int original = x;
+        int rev = 0;
         
         while (x != 0) {
-            rev = rev * 10 + x % 10;
-            x /= 10;
+            int digit = x % 10;
+            x = x / 10;
+            
+            // Check for overflow BEFORE updating rev
+            if (rev > Integer.MAX_VALUE / 10 || 
+                (rev == Integer.MAX_VALUE / 10 && digit > 7)) {
+                return 0;
+            }
+            
+            if (rev < Integer.MIN_VALUE / 10 || 
+                (rev == Integer.MIN_VALUE / 10 && digit < -8)) {
+                return 0;
+            }
+            
+            rev = rev * 10 + digit;
         }
         
-        // Cast back to int at the end
-        if (rev > Integer.MAX_VALUE || rev < Integer.MIN_VALUE) {
-            return 0;
-        }
-        
-        return (int) rev;
+        return rev;
     }
 }
