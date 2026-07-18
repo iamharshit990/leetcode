@@ -11,11 +11,11 @@ class Solution {
                     if(stack.isEmpty()||stack.peek()!='(') return false;
                     stack.pop();
                 }
-                if(c=='}'){
+                else if(c=='}'){
                     if(stack.isEmpty()||stack.peek()!='{') return false;
                     stack.pop();
                 }
-                if(c==']'){
+                else if(c==']'){
                     if(stack.isEmpty()||stack.peek()!='[') return false;
                     stack.pop();
                 }
