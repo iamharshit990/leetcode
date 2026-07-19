@@ -18,7 +18,7 @@ class Solution {
                 }
             }
             
-            if(i==nums.length-1) break;
+            
             
         }
         return ans;
