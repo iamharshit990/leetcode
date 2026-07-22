@@ -24,9 +24,6 @@ class Solution {
             else if(nums[mid]>target) high=mid-1;
             else low=mid+1;
         }
-        if(ans1==-1||ans2==-1){
-            return new int[]{-1,-1};
-        }
         return new int[]{ans1,ans2};
 
         
