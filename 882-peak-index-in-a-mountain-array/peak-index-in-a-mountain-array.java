@@ -7,11 +7,11 @@ class Solution {
         while(low<=high){
             int mid=(low+high)/2;
             if(mid==0) return mid+1;
-            if(arr[mid]>arr[mid-1]){
-                ans=mid;
+            if(arr[mid]<arr[mid+1]){
                 low=mid+1;
             }
             else {
+                ans=mid;
                 high=mid-1;
             }
         }
