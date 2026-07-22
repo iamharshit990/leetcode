@@ -1,14 +1,11 @@
 class Solution {
     public int peakIndexInMountainArray(int[] arr) {
-        int ans=-1;
-        int i=0;
-        int j=1;
-        while(j<arr.length&&arr[i]<arr[j]){
-            ans=i;
-            i++;
-            j++;
+        for(int i=1;i<arr.length;i++){
+            if(arr[i]<arr[i-1]){
+                return i-1;
+            }
         }
-        return i;
+        return -1;
 
         
     }
