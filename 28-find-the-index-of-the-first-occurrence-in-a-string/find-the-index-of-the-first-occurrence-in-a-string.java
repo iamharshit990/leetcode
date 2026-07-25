@@ -4,8 +4,15 @@ class Solution {
         int low=0;
         int high=n-1;
         while(high<haystack.length()){
-            String sub= haystack.substring(low,high+1);
-            if(sub.equals(needle)) return low;
+            int index=0;
+            for(int i=low;i<high+1;i++){
+                if(haystack.charAt(i)==needle.charAt(index++)){
+                    if(index==needle.length()) return low;
+                    continue ;
+                    
+                }
+                else break;
+            }
             low++;
             high++;
         }
