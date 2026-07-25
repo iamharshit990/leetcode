@@ -1,17 +1,17 @@
 class Solution {
     public int maxProduct(int n) {
-        List<Integer> list= new ArrayList<>();
-        while(n>0){
-            int digit=n%10;
-            list.add(digit);
-            n/=10;
+        int max1 = 0, max2 = 0;
+        while (n > 0) {
+            int dig = n % 10;
+            if (max1 < dig) {
+                max2 = max1; 
+                max1 = dig;
+            } else if (dig > max2) {
+                max2 = dig;
+            }
+            n /= 10;
         }
-        Collections.sort(list);
-        int[] primitiveArray = list.stream().mapToInt(Integer::intValue).toArray();
-        int i=primitiveArray.length;
-        return primitiveArray[i-1]*primitiveArray[i-2];
-        
+        return max1 * max2;
 
-        
     }
 }
