@@ -9,13 +9,7 @@ class Solution {
             if(nums[mid]>nums[n-1]){
                 low=mid+1;
             }
-            else if(nums[mid]<nums[n-1]){
-                high=mid-1;
-            }
-            else {
-                ans=Math.min(nums[mid],ans);
-                break;
-            }
+            else high=mid-1;
             ans=Math.min(nums[mid],ans);
         }
         return ans;
