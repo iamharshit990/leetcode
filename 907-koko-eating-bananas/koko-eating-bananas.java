@@ -1,30 +1,29 @@
 class Solution {
-    public int max(int arr[]){
-        int ans=0;
-        for(int i=0;i<arr.length;i++){
-            ans=Math.max(ans,arr[i]);
+    public int max(int []arr){
+        int max=0;
+        for(int i:arr){
+            max=Math.max(i,max);
         }
-        return ans;
+        return max;
     }
-    public boolean feasible(int arr[],int k,int h){
-        long count=0;
-        for(int i=0;i<arr.length;i++){
-            count+=(int) Math.ceil((double)arr[i]/k);
+    public boolean isValid(int [] arr,int num,int h){
+        long count = 0;
+        for(int i:arr){
+            count+=(int)Math.ceil((double)i/num);
         }
-        if(count<=h) return true;
+        if(count<=h){
+            return true;
+        }
         else return false;
+
     }
     public int minEatingSpeed(int[] piles, int h) {
-        int n=piles.length;
-        
-        
-       
         int low=1;
         int high=max(piles);
-        int ans=high;
+        int ans=max(piles);
         while(low<=high){
-            int mid =(low+high)/2;
-            if(feasible(piles,mid,h)){
+            int mid=(low+high)/2;
+            if(isValid(piles,mid,h)){
                 ans=Math.min(ans,mid);
                 high=mid-1;
             }
@@ -33,5 +32,6 @@ class Solution {
             }
         }
         return ans;
+        
     }
 }
