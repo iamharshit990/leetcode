@@ -1,5 +1,5 @@
 class Solution {
-    public boolean helper(int arr[],long k , long num){
+    public boolean helper(int arr[],long k , int num){
         long count=0;
         for(int i:arr){
             if(i>=num){
@@ -18,11 +18,11 @@ class Solution {
         return max;
     }
     public int maximumCandies(int[] candies, long k) {
-        long ans = 0;
-        long low=1;
-        long high= max(candies);
+        int  ans = 0;
+        int low=1;
+        int high= max(candies);
         while(low<=high){
-            long mid=low+(high-low)/2;
+            int mid=low+(high-low)/2;
             if(helper(candies,k,mid)){
                 ans=mid;
                 low=mid+1;
@@ -32,7 +32,7 @@ class Solution {
             }
 
         }
-        return (int) ans;
+        return  ans;
         
     }
 }
