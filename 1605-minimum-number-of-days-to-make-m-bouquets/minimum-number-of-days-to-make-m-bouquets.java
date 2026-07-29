@@ -4,7 +4,7 @@ class Solution {
         int nb=0;
         long count=0;
         for(int i=0;i<arr.length;i++){
-            if(arr[i]<mid){
+            if(arr[i]<=mid){
                 count++;
             }
             else {
@@ -27,7 +27,7 @@ class Solution {
         long low=1;
         long high=0;
         for(int i:arr){
-            high+=i;
+            high=Math.max(high,i);
         }
         int ans=-1;
         while(low<=high){
@@ -40,8 +40,7 @@ class Solution {
                 low=(int)(mid)+1;
             }
         }
-        if(ans>0) return ans-1;
-        else return ans;
+        return ans;
 
 
         
