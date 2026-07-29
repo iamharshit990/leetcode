@@ -1,23 +1,22 @@
 class Solution {
     public int findMin(int[] nums) {
+        int n=nums.length;
+        int ans=Integer.MAX_VALUE;
         int low=0;
         int high=nums.length-1;
-        int ans=nums[0];
         while(low<=high){
             int mid=(low+high)/2;
-            if(nums[mid]>nums[nums.length-1]){
+            if(nums[mid]>nums[n-1]){
                 low=mid+1;
             }
-            else if(nums[mid]<nums[nums.length-1]){
+            else if(nums[mid]<nums[n-1]){
                 high=mid-1;
-            
             }
             else {
-                ans=Math.min(ans,nums[mid]);
-
+                ans=Math.min(nums[mid],ans);
                 break;
             }
-            ans=Math.min(ans,nums[mid]);
+            ans=Math.min(nums[mid],ans);
         }
         return ans;
         
