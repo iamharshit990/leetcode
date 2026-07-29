@@ -24,8 +24,8 @@ class Solution {
         // arr m--> no of boutiques 
         // we need to use k adjacent to make a boutique i.e 2 2 ka pair will give 1 so we need to make m boutiques
         // to make m we would need k no of adjacent 
-        long low=1;
-        long high=0;
+        int low=1;
+        int high=0;
         for(int i:arr){
             high=Math.max(high,i);
         }
@@ -34,7 +34,7 @@ class Solution {
             long mid=(low+high)/2;
             if(helper(arr,m,k,mid)){
                 ans=(int)mid;
-                high=(mid)-1;
+                high=(int)(mid)-1;
             }
             else {
                 low=(int)(mid)+1;
