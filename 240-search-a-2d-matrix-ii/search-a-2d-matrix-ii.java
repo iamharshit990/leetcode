@@ -1,25 +1,13 @@
 class Solution {
-    public boolean bs(int [] arr,int target){
-        int low=0;
-        int high=arr.length-1;
-        while(low<=high){
-            int mid=(low+high)/2;
-            if(arr[mid]<target){
-                low=mid+1;
-            }
-            else if(arr[mid]>target){
-                high=mid-1;
-            }
-            else return true;
+    public boolean searchMatrix(int[][] arr, int target) {
+        int row = arr.length-1;
+        int col=0;
+        while(row>=0&&col<arr[0].length){
+            int curr = arr[row][col];
+            if(curr==target) return true;
+            else if(curr>target) row--;
+            else col++;
         }
         return false;
-
-    }
-    public boolean searchMatrix(int[][] matrix, int target) {
-        for(int i=0;i<matrix.length;i++){
-            if(bs(matrix[i],target)) return true;
-        }
-        return false;
-        
     }
 }
