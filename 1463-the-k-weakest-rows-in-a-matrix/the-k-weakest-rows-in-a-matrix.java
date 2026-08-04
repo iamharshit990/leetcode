@@ -10,14 +10,24 @@ class Pair {
 
 class Solution {
 
-    public int count(int arr[]) {
-        int c = 0;
-        for (int i : arr) {
-            if (i == 1)
-                c++;
+    public int count(int[] arr) {
+    int low = 0;
+    int high = arr.length - 1;
+    int ans = -1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] == 1) {
+            ans = mid;
+            low = mid + 1;
+        } else {
+            high = mid - 1;
         }
-        return c;
     }
+
+    return ans + 1;
+}
 
     public int[] kWeakestRows(int[][] mat, int k) {
         PriorityQueue<Pair> pq = new PriorityQueue<>(
