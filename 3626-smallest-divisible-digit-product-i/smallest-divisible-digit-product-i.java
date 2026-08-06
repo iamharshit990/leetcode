@@ -10,7 +10,7 @@ class Solution {
     }
 
     public int smallestNumber(int n, int t) {
-        for(int i=n;i<=100;i++){
+        for(int i=n;i<=n+10;i++){
             if(prd(i)%t==0) return i;
         }
         
