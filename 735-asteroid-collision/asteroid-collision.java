@@ -5,10 +5,6 @@ class Solution {
             if (i > 0)
                 stack.push(i);
             else {
-                if (stack.isEmpty() || stack.peek() < 0) {
-                    stack.push(i);
-                    continue;
-                }
                 while (!stack.isEmpty() && stack.peek() > 0) {
                     if (stack.isEmpty() || stack.peek() < 0) {
                         stack.push(i);
