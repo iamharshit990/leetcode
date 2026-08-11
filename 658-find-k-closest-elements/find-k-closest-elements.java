@@ -1,19 +1,33 @@
 class Solution {
+    class Pair{
+        int el;
+        int diff;
+
+        Pair(int a,int b){
+            el=a;
+            diff=b;
+        }
+    }
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
-        int i=0;
-        int j=arr.length-1;
-        while(i<j&&j-i+1>k){
-            int diff1= Math.abs(arr[i]-x);
-            int diff2= Math.abs(arr[j]-x);
-            if(diff1>diff2){
-                i++;
-            }
-            else j--;
-        }
         List<Integer> ans= new ArrayList<>();
-        for(int low=i;low<=j;low++){
-            ans.add(arr[low]);
+        PriorityQueue<Pair> pq= new PriorityQueue<>(
+            (a,b) -> {
+                if(a.diff!=b.diff) 
+                    return Integer.compare(b.diff,a.diff);
+                return Integer.compare(b.el,a.el);
+            }
+        );
+        for(int i=0;i<arr.length;i++){
+            int diff=Math.abs(arr[i]-x);
+            pq.add(new Pair(arr[i],diff));
+            if(pq.size()>k){
+                pq.poll();
+            }
         }
+        while(!pq.isEmpty()){
+            ans.add(pq.poll().el);
+        }
+        Collections.sort(ans);
         return ans;
         
     }
