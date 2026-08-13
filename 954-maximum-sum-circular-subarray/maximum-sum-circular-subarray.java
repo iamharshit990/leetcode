@@ -1,26 +1,26 @@
 class Solution {
-    public int min(int arr[]){
-        int sum=0;
-        for(int i:arr){
-            sum+=i;
+    public int helper (int arr[]){
+        int tsum=0;
+        for(int i : arr){
+            tsum+=i;
         }
-        int currsum=arr[0];
         int min=arr[0];
+        int sum=arr[0];
         for(int i=1;i<arr.length;i++){
-            currsum=Math.min(arr[i],currsum+arr[i]);
-            min=Math.min(currsum,min);
+            sum=Math.min(arr[i],sum+arr[i]);
+            min=Math.min(sum,min);
         }
-        return sum-min;
+        return tsum-min;
 
     }
     public int maxSubarraySumCircular(int[] nums) {
-        int sum=nums[0];
         int max=nums[0];
+        int sum=nums[0];
         for(int i=1;i<nums.length;i++){
             sum=Math.max(nums[i],sum+nums[i]);
             max=Math.max(sum,max);
         }
         if(max<0) return max;
-        return Math.max(max,min(nums));
+        return Math.max(max,helper(nums));
     }
 }
