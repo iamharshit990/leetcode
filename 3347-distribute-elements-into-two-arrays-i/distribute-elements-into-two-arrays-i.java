@@ -1,23 +1,18 @@
 class Solution {
     public int[] resultArray(int[] nums) {
-        Stack<Integer> a = new Stack<>();
-        Stack<Integer> b = new Stack<>();
-        a.push(nums[0]);
-        b.push(nums[1]);
-        int res[] = new int[nums.length];
-        for (int i = 2; i < nums.length; i++) {
-            if (a.peek() > b.peek()) {
-                a.push(nums[i]);
-            } else {
-                b.push(nums[i]);
-            }
+        int n = nums.length;
+        int[] a = new int[n], b = new int[n];
+        int ai = 0, bi = 0;
+        a[ai++] = nums[0];
+        b[bi++] = nums[1];
+        for (int i = 2; i < n; i++) {
+            if (a[ai-1] > b[bi-1]) a[ai++] = nums[i];
+            else b[bi++] = nums[i];
         }
-        int index = 0;
-        for (int x : a)
-            res[index++] = x;
-        for (int x : b)
-            res[index++] = x;
+        int[] res = new int[n];
+        int idx = 0;
+        for (int k = 0; k < ai; k++) res[idx++] = a[k];
+        for (int k = 0; k < bi; k++) res[idx++] = b[k];
         return res;
-
     }
 }
