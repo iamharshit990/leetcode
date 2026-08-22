@@ -1,32 +1,33 @@
 class Solution {
-    public static void helper (int open, int close,StringBuilder sb,List<String>ans,int n){
-        if(open==n&&close==n) {
+    public void helper(int open , int close ,int n, StringBuilder sb ,List<String> ans){
+        if(open==n&&close==n){
             ans.add(sb.toString());
-            return;
+            return ;
         }
 
         if(open<n){
             sb.append('(');
-            helper(open+1,close,sb,ans,n);
-            if (sb.length() > 0) {
-                sb.deleteCharAt(sb.length() - 1);
+            helper(open+1,close,n,sb,ans);
+            if(!sb.isEmpty()){
+                sb.deleteCharAt(sb.length()-1);
             }
         }
 
         if(close<open){
             sb.append(')');
-            helper(open,close+1,sb,ans,n);
-            if (sb.length() > 0) {
-                sb.deleteCharAt(sb.length() - 1);
+            helper(open,close+1,n,sb,ans);
+            if(!sb.isEmpty()){
+                sb.deleteCharAt(sb.length()-1);
             }
-        }
-        return;
 
+        }
+        return ;
     }
     public List<String> generateParenthesis(int n) {
-        List<String> ans = new ArrayList<>();
+        List<String> ans= new ArrayList<>();
         StringBuilder sb = new StringBuilder();
-        helper(0,0,sb,ans,n);
+        helper(0,0,n,sb,ans);
         return ans;
+        
     }
 }
