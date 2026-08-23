@@ -28,6 +28,7 @@ class Solution {
                 if(t.left!=null) q.add(t.left);
                 if(t.right!=null) q.add(t.right);
             }
+            // for right to left in a level -> Collections.reverse(temp);
             ans.add(temp);
 
         }
