@@ -19,20 +19,21 @@ class Solution {
         List<List<Integer>> ans = new ArrayList<>();
         Queue<TreeNode> q = new LinkedList<>();
         q.add(root);
-        boolean ltor = true;
+        boolean ltor= true;
         while(!q.isEmpty()){
             int size = q.size();
-            int rn = size;
             List<Integer> temp = new ArrayList<>();
             while(size-->0){
                 TreeNode t = q.poll();
                 temp.add(t.val);
-                if(t.left!=null) q.add(t.left);
+                if(t.left!=null) q.add(t.left) ;
                 if(t.right!=null) q.add(t.right);
             }
+            // temp -> 3  and {9,20}  since we want 9,20 to be to right to left we can simply reverse it 
+            // we will use this boolean for that check 
             if(!ltor) Collections.reverse(temp);
             ans.add(temp);
-            ltor=!(ltor);
+            ltor=!ltor;
         }
         return ans;
         
