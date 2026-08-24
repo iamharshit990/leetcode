@@ -17,18 +17,20 @@ class Solution {
     TreeNode ans = null;
     public void helper(TreeNode root,int val){
         if(root==null) return ;
-        if(root.val==val) {
-            ans = root;
-            return ;
+        if(root.val==val){
+            ans=root;
         }
-        if(root.val>val) helper(root.left,val);
-        else helper(root.right,val);
-        return ;
+        if(root.val>val){
+            helper(root.left,val);
+        }
+        else {
+            helper(root.right,val);
+        }
 
     }
     public TreeNode searchBST(TreeNode root, int val) {
+        if(root==null) return root;
         helper(root,val);
         return ans;
-        
     }
 }
