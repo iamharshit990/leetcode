@@ -7,29 +7,33 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
 class Solution {
     TreeNode ans = null;
-    public int helper(TreeNode root, TreeNode p ,TreeNode q){
-        if(root==null) return 0;
-        int self = 0;
-        int left = helper(root.left,p,q);
-        int right = helper(root.right,p,q);
-        if(root==p||root==q){
-            self=1;
+    public void helper(TreeNode root , TreeNode p, TreeNode q){
+        if(root==p||root==q) {
+            ans = root;
+            return ;
         }
-        int total = left+right+self;
-        if(total==2&& ans== null){
-            ans = root; 
+        if(root==null) return ;
+        if(root.val<p.val&&root.val<q.val){
+            helper(root.right,p,q);
         }
-        return total;
-        
-
-
-    }
+        if (root.val>q.val){
+            helper(root.left,p,q);
+        }
+        if(root.val>p.val&&root.val<q.val){
+            ans= root;
+            return ;
+        }
+    } 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-
-
-        helper(root,p,q);
+        if(p.val>q.val){
+            helper(root,q,p);
+        }
+        else{
+            helper(root,p,q);
+        }
         return ans;
         
     }
