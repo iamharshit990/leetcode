@@ -14,16 +14,30 @@
  * }
  */
 class Solution {
-    public void helper(TreeNode root,List<Integer> list){
-        if(root==null) return ;
-        helper(root.left,list);
-        list.add(root.val);
-        helper(root.right,list);
+    Stack<TreeNode> asc = new Stack<>();
+    public TreeNode getSmaller(){
+        if(asc.isEmpty()) return null;
+
+        TreeNode small = asc.pop();
+        TreeNode rightChild = small.right; 
+        while(rightChild!=null){
+            asc.push(rightChild);
+            rightChild=rightChild.left;
+        }
+        return small;
     }
     public int kthSmallest(TreeNode root, int k) {
-        List<Integer> ans = new ArrayList<>();
-        helper(root,ans);
-        return ans.get(k-1);
+        if(root==null) return 0;
+        TreeNode t = root;
+        while(t!=null){
+            asc.add(t);
+            t=t.left;
+        }
+        t=root;
+        for(int i=0;i<k;i++){
+            t = getSmaller();
+        }
+        return t.val;
         
     }
 }
