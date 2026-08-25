@@ -14,23 +14,50 @@
  * }
  */
 class Solution {
-    public void helper(TreeNode root , List<Integer> temp){
-        if(root==null) return ;
-        helper(root.left,temp);
-        temp.add(root.val);
-        helper(root.right,temp);
-        return ;
+    Stack<TreeNode> asc = new Stack<>();
+    Stack<TreeNode> desc = new Stack<>();
+    public TreeNode getSmaller(){
+        if(asc.isEmpty()) return null;
+
+        TreeNode small = asc.pop();
+        TreeNode rightChild = small.right; 
+        while(rightChild!=null){
+            asc.push(rightChild);
+            rightChild=rightChild.left;
+        }
+        return small;
+    }
+    TreeNode getBigger(){
+        if(desc.isEmpty()) return null;
+        TreeNode big = desc.pop();
+        TreeNode leftChild = big.left;
+        while(leftChild!=null){
+            desc.push(leftChild);
+            leftChild = leftChild.right;
+        }
+        return big ; 
     }
     public boolean findTarget(TreeNode root, int k) {
-        List<Integer> temp  = new ArrayList<>();
-        helper(root,temp);
-        int i=0;
-        int j = temp.size()-1;
-        while(i<j){
-            int sum = temp.get(i) + temp.get(j);
-            if(sum>k) j--;
-            else if(sum<k) i++;
-            else return true;
+        if(root==null) return false;
+        TreeNode t = root;
+        while(t!=null){
+            asc.push(t);
+            t=t.left;
+        }
+        t=root;
+        while(t!=null){
+            desc.push(t);
+            t=t.right;
+        }
+        TreeNode i = getSmaller();
+        TreeNode j = getBigger();
+        while(i!=null&&j!=null&&i!=j&&i.val<j.val){
+            int sum = i.val+j.val;
+            if(sum>k){
+                j = getBigger();
+            }
+            else if(sum==k) return true;
+            else i=getSmaller();
         }
         return false;
     }
