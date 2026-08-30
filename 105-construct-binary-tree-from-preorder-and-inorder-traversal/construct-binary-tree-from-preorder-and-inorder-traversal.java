@@ -17,7 +17,7 @@ class Solution {
     int idx=0;
     HashMap<Integer,Integer> map = new HashMap<>();
     public TreeNode fun(int [] preorder , int low ,int high){
-        if(low>high||idx>=preorder.length) return null;
+        if(low>high) return null;
         TreeNode node = new TreeNode (preorder[idx++]);
         int id = map.get(node.val);
         node.left=fun(preorder,low,id-1);
