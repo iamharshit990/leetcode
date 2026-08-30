@@ -14,21 +14,25 @@
  * }
  */
 class Solution{
-    public void helper(TreeNode root,List<Integer> temp){
+    TreeNode prev = null;
+    boolean ans = true;
+    public void helper(TreeNode root){
         if(root==null) return ;
-        helper(root.left,temp);
-        temp.add(root.val);
-        helper(root.right,temp);
+        helper(root.left);
+        if(prev==null) prev=root;
+        else {
+            if (prev.val>=root.val) {
+                ans=false;
+                
+            } 
+            prev=root;
+        }
+        helper(root.right);
     }
     public boolean isValidBST(TreeNode root) {
         if(root==null) return true;
-        List<Integer> temp = new ArrayList<>();
-        helper(root,temp);
-        if(temp.size()<=1) return true;
-        for(int i = 1;i<temp.size();i++){
-            if(temp.get(i)<=temp.get(i-1)) return false;
-        }
-        return true;
+        helper(root);
+        return ans;
 
         
     }
