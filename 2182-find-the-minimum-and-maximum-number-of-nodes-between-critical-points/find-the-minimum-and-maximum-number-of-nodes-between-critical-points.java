@@ -15,31 +15,6 @@ class Solution {
         if(curr.val>prev.val&&curr.val>ahead.val) return true;
         return false;
     }
-    public int helper(ListNode first,ListNode last,ListNode head){
-        int max = 0 ;
-        ListNode curr = head;
-        while(curr!=first){
-            curr=curr.next;
-        }
-        while(curr!=last){
-            curr=curr.next;
-            max++;
-        }
-        return max;
-
-    }
-    public int minDist(ListNode prev , ListNode node ,ListNode head){
-        int dis = 0;
-        ListNode curr = head;
-        while(curr!=prev){
-            curr=curr.next;
-        }
-        while(curr!=node){
-            dis++;
-            curr=curr.next;
-        }
-        return dis;
-    }
     public int[] nodesBetweenCriticalPoints(ListNode head) {
        ListNode prev = null;
        ListNode curr = head;
