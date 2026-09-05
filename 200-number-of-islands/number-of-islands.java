@@ -1,39 +1,31 @@
 class Solution {
-    int x[] = {-1, 1, 0, 0};
-    int y[] = {0, 0, -1, 1};
-
-    boolean valid(int i, int j, int n, int m) {
-        if (i < 0 || i >= n || j < 0 || j >= m) return false;
+    int x[]= {-1,1,0,0};
+    int y[]= {0,0,-1,1};
+    public boolean valid(int i,int j,int n,int m){
+        if(i<0||j<0||j>=m||i>=n) return false;
         return true;
     }
-
-    public void dfs(char[][] arr, int i, int j, int n, int m) {
-        // Mark the current cell as visited by sinking it (turning it to '0')
-        arr[i][j] = '0'; 
-        
-        for (int k = 0; k < 4; k++) {
-            int row = i + x[k];
-            int col = j + y[k];
-            
-            // We no longer need to check a vis array
-            if (valid(row, col, n, m) && arr[row][col] == '1') {
-                dfs(arr, row, col, n, m);
+    public void dfs(char[][]arr,boolean vis[][],int i, int j,int n, int m){
+        vis[i][j]  = true;
+        for(int k=0;k<4;k++){
+            int row = i+x[k];
+            int col = j+y[k];
+            if(valid(row,col,n,m)&&arr[row][col]=='1'&&vis[row][col]==false){
+                dfs(arr,vis,row,col,n,m);
             }
         }
+        return ;
     }
-
     public int numIslands(char[][] grid) {
-        if (grid == null || grid.length == 0) return 0;
-        
+        int ans =0;
         int n = grid.length;
         int m = grid[0].length;
-        int ans = 0;
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (grid[i][j] == '1') {
-                    dfs(grid, i, j, n, m);
-                    ans++; // Found a new island
+        boolean vis[][] = new boolean [n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]=='1'&&!vis[i][j]){
+                    dfs(grid,vis,i,j,n,m);
+                    ans++;
                 }
             }
         }
