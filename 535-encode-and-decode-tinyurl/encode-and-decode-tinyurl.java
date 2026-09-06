@@ -1,6 +1,5 @@
 public class Codec {
     HashMap<String,String> map = new HashMap<>();
-    private static final String url = "http://tinyurl.com/";
     int id=0;
    
     // Encodes a URL to a shortened URL.
@@ -8,7 +7,6 @@ public class Codec {
         id++;
         String s = Integer.toString(id);
         map.put(s,longUrl);
-        
         return s;
     }
 
