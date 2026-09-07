@@ -1,27 +1,21 @@
 class Solution {
-    public void helper(int[][]adj, boolean[] vis, int node) {
-        vis[node] = true;
-        for (int i = 0; i < adj[node].length; i++) {
-            int number = adj[node][i];
-            if (adj[node][i]==1&&vis[i] == false) {
-                helper(adj, vis, i);
-            }
+    public void helper(int [][]arr,boolean[]vis,int index){
+        vis[index] = true;
+        for(int i=0;i<arr[index].length;i++){
+            if(!vis[i]&&arr[index][i]==1) helper(arr,vis,i);
         }
-        return;
+        return ;
     }
-
-    public int findCircleNum(int[][] adj) {
-        int n = adj.length;
-        boolean vis [] = new boolean[n];
+    public int findCircleNum(int[][] isConnected) {
+        int n = isConnected.length;
+        boolean[] vis = new boolean[isConnected.length];
         int res = 0;
-        for (int i = 0; i < n; i++) {
-            if (!vis[i]){
-                helper(adj, vis, i);
+        for(int i=0;i<n;i++){
+            if(!vis[i]) {
+                helper(isConnected,vis,i);
                 res++;
             }
         }
         return res;
     }
-
-    
 }
