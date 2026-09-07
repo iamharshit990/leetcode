@@ -1,5 +1,6 @@
 class Solution {
     public void helper(int [][]arr,boolean[]vis,int index){
+        // it is a N*N so like it has detail about all edges like for 0 it would have relationship with all nodes given on arr[index]
         vis[index] = true;
         for(int i=0;i<arr[index].length;i++){
             if(!vis[i]&&arr[index][i]==1) helper(arr,vis,i);
