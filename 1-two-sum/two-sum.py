@@ -1,9 +1,9 @@
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum(self, arr: list[int], target: int) -> list[int]:
         map ={}
-        for  i in range(len(nums)):
-            diff = target-nums[i]
-            if(diff in map) : return [i,map[diff]]
-            map[nums[i]] = i
-        return []
+        for i in range(len(arr)):
+            if(target-arr[i] in map):
+                return [i,map[target-arr[i]]]
+            map[arr[i]] = i
+        return[]
         
