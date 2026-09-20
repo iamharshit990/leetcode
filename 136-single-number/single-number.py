@@ -1,9 +1,9 @@
 from collections import Counter
 class Solution:
     def singleNumber(self, nums: list[int]) -> int:
-        dic = Counter(nums)
-        for key,val in dic.items():
-            if(val==1):
-                return key
+        x = 0
+        for i in nums:
+            x=x^i
+        return x
 
         
