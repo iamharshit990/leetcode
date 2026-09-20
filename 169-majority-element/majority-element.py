@@ -10,10 +10,6 @@ class Solution:
                 cnt+=1
             else:
                 cnt-=1
-        cnt=0
-        for i in nums:
-            if i == el:
-                cnt+=1  
-        if cnt > len(nums)//2:
-            return el
+        # if it is given that there always exists the majority element
+        return el
         
