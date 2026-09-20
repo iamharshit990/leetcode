@@ -1,16 +1,8 @@
 class Solution:
-    def moveZeroes(self, arr: list[int]) -> None:
-        j=-1
-        for i in range(len(arr)):
-            if(arr[i]==0):
-                j=i
-                break
-        if j==-1:
-            return
-        for i in range (j+1,len(arr)):
-            if(arr[i]!=0):
-                arr[i] , arr[j] =arr[j],arr[i]
+    def moveZeroes(self, nums: list[int]) -> None:
+        j=0
+        for i in range(len(nums)):
+            if(nums[i] != 0):
+                nums[j] , nums[i] = nums[i] , nums[j]
                 j+=1
-        
-     
         
