@@ -14,11 +14,11 @@ class Solution:
             for i in range (top,bottom+1):
                 ans.append(arr[i][right])
             right-=1
-            if top<=bottom:
+            if top<=bottom and left<=right :
                 for i in range (right,left-1,-1):
                     ans.append(arr[bottom][i])
                 bottom-=1
-            if left<=right:
+            if left<=right and top<=bottom :
                 for i in range (bottom,top-1,-1):
                     ans.append(arr[i][left])
                 left+=1
