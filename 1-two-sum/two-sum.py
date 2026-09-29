@@ -1,9 +1,11 @@
+from collections import defaultdict
 class Solution:
-    def twoSum(self, arr: list[int], target: int) -> list[int]:
-        map ={}
-        for i in range(len(arr)):
-            if(target-arr[i] in map):
-                return [i,map[target-arr[i]]]
-            map[arr[i]] = i
-        return[]
-        
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
+        dic = defaultdict(int)
+        for i in range(len(nums)):
+            diff = target-nums[i]
+            if diff in dic:
+                return [dic[diff],i]
+            
+            dic[nums[i]] = i
+        return []
