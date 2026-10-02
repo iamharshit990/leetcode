@@ -7,9 +7,7 @@ class Solution:
             c1 = nums[i]
             c2 = pmax*nums[i]
             c3 = pmin*nums[i]
-            pmax = max(c3,max(c2,c1))
-            pmin = min(c2,min(c3,c1))
             ans = max(ans,max(c1,max(c2,c3)))
-        return ans
-
-        
+            pmax = max(c1,max(c2,c3))
+            pmin = min(c1,min(c2,c3))
+        return ans        
