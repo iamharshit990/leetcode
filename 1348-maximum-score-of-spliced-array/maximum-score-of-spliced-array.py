@@ -1,32 +1,24 @@
 class Solution:
     def maximumsSplicedArray(self, nums1: list[int], nums2: list[int]) -> int:
-        diff1 = [0]*len(nums1)
+        # in 1 pass
+        sum1 = 0
+        sum2 = 0
+
+        curr_max1 = 0
+        curr_max2 = 0
+
+        final_max1 = 0
+        final_max2 = 0
+
         for i in range(len(nums1)):
-            diff1[i] = nums2[i] - nums1[i]
-        cbest = 0 
-        best = diff1[0]
-        for i in range(len(nums1)):
-            cbest = max(diff1[i],cbest+diff1[i])
-            best = max(best,cbest)
+            sum1+=nums1[i]
+            sum2+=nums2[i]
 
-        diff2 = [0]*len(nums1)
-        for i in range(len(nums1)):
-            diff2[i] = nums1[i] - nums2[i]
-        
-        cbest2 = 0
-        best2 = diff2[0]
-        for i in range(len(nums2)):
-            cbest2 = max(diff2[i],cbest2+diff2[i])
-            best2 = max(best2,cbest2)
+            curr_max1 = max((nums2[i]-nums1[i]),curr_max1+(nums2[i]-nums1[i]))
+            curr_max2 = max((nums1[i]-nums2[i]),curr_max2+(nums1[i]-nums2[i]))
 
-        sum1 = sum(nums1)
-        sum2 = sum(nums2)
-        return max(sum1,sum2,sum1+best,sum2+best2)
+            final_max1 = max(final_max1,curr_max1)
+            final_max2 = max(final_max2,curr_max2)
 
-            
-            
-        
-
-
-
+        return max(sum1,sum2,sum1+final_max1,sum2+final_max2)
         
