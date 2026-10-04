@@ -1,23 +1,27 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
-        open = 0
-        close = 0
-        for i in s:
-            if i=='(' or i=='*':
-                open+=1
+        open_stack = []
+        ast_stack = []
+        for i in range(len(s)):
+            if s[i]=='(':
+                open_stack.append(i)
+            elif s[i]=='*':
+                ast_stack.append(i)
             else:
-                if open>0: open-=1
-                else :return False
+                if open_stack:
+                    open_stack.pop()
+                elif ast_stack:
+                    ast_stack.pop()
+                else:
+                    return False
+            
+        while open_stack and ast_stack:
+            if (open_stack[-1]>ast_stack[-1]):
+                return False
+            
+            open_stack.pop()
+            ast_stack.pop()
         
-        for i in range(len(s)-1,-1,-1):
-            ch = s[i]
-            if ch ==')' or ch =='*':
-                close+=1
-            else:
-                if close>0 :close-=1
-                else : return False
-        
-        return True
+        return True if not open_stack else False
 
-        
         
