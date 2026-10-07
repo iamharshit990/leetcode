@@ -2,7 +2,7 @@ class Solution:
     def nextGreaterElements(self, nums: list[int]) -> list[int]:
         if len(nums)<2: return [-1]
         stack = []
-        for i in range(len(nums)-2,-1,-1):
+        for i in range(len(nums)-1,-1,-1):
             stack.append(nums[i])
         
         ans = [-1]*len(nums)
