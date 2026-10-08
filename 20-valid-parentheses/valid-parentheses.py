@@ -5,15 +5,14 @@ class Solution:
             if i in "([{":
                 stack.append(i)
             else:
-                if not stack :
+                if not stack:
                     return False
                 if i==')' and stack[-1]!='(':
                     return False
-                if i==']' and stack[-1]!='[':
+                elif i==']' and stack[-1]!='[':
                     return False
-                if i=='}' and stack[-1]!='{':
+                elif i=='}' and stack[-1]!='{':
                     return False
                 stack.pop()
-                
         return True if not stack else False
         
