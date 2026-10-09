@@ -1,14 +1,14 @@
 class Solution:
     def minAddToMakeValid(self, s: str) -> int:
-        open=0
-        close =0
+        count = 0
+        ans=0
         for i in s:
-            if i=='(':
-                open+=1
+            if i =='(':
+                count+=1
             else :
-                if open>0:
-                    open-=1
-                else:
-                    close+=1
-        return open+close
-       
+                if count>0: count-=1
+                else :
+                    ans+=1
+        if count>0:
+            ans+=count 
+        return ans
