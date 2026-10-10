@@ -1,19 +1,22 @@
 class Solution:
     def kConcatenationMaxSum(self, arr: list[int], k: int) -> int:
-        MOD = 10**9 + 7
-        def kadane(nums):
-            csum = 0
+        n = len(arr)
+        MOD = 10**9+7
+        def kadane(reps):
             ans = 0
-            for i in range(len(nums)):
-                csum = max(nums[i],csum+nums[i])
-                ans = max(ans,csum)
+            curr= 0
+            for i in range(n*reps):
+                val = arr[i%n]
+                curr = max(val,curr+val)
+                ans = max(ans,curr)
+            
             return ans
-
-        sum_arr = sum(arr)
-        if k == 1 :return kadane(arr)%MOD
-        if sum_arr>0:
-            return (kadane(arr+arr) + (k-2)*sum_arr)%MOD
-        else:
-            return (kadane(arr+arr))%MOD
-
         
+        if k==1:
+            return kadane(1)%MOD
+        
+        if sum(arr)>0:
+            return ((k-2)*sum(arr) + kadane(2))%MOD
+        else:
+            return kadane(2)%MOD
+
