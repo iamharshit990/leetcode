@@ -4,8 +4,7 @@ class Solution:
             if nums[i]<0:
                 nums[i]*=-1
         
-        nums.sort()
-        nums.reverse()
+        nums.sort(reverse=True)
         n = len(nums)
         i = 0
         ans  = 0
